@@ -62,7 +62,7 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevinstance, _
 
 	//シーンマネージャー初期化処理
 	//エラーが発生したら、終了する
-	if(SceneManager_Initialize(E_TITLE)==D_ERROR
+	if(SceneManager_Initialize(E_TITLE)==D_ERROR)
 		{
 			return D_ERROR;
 		}
@@ -77,10 +77,24 @@ int WINAPI WinMain(_In_ HINSTANCE hinstance, _In_opt_ HINSTANCE hPrevinstance, _
 		while (ProcessMessage() != D_ERROR && Input_Escape() == FALSE)
 		{
 			//入力制御機能更新処理
-		}
-	//入力待機
-	WaitKey();
+			Input_Update();
 
+			//シーンマネージャー更新処理
+			SceneManager_Update();
+
+			//画面クリア
+			ClearDrawScreen();
+
+			//シーンマネージャー描画処理
+			SceneManager_Draw();
+
+			//フレームレート制御処理
+			FreamControl_Update();
+
+			//画面の内容を表画面に反映
+			ScreenFlip();
+
+		}
 
 	//Dxライブラリの使用の終了処理
 	DxLib_End();
