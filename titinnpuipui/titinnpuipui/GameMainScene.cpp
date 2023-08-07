@@ -108,6 +108,9 @@ void GameMainScene_Updata(void)
 		   CheckClear():  //クリアチェック
 		   break;
 
+	default:
+		break; 
+
 
 
 	}
