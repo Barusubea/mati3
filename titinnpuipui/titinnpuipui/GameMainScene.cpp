@@ -9,7 +9,7 @@
 ************************/
 #define TIMELIMIT      (3600*3) //制限時間
 
-#define NUMBER_IMAGE_MAX(10)    //数字画像数
+#define NUMBER_IMAGE_MAX (10)    //数字画像数
 
 
 /***********************
@@ -105,13 +105,66 @@ void GameMainScene_Updata(void)
 		   break;
 
 	case 4:
-		   CheckClear():  //クリアチェック
+		   CheckClear();  //クリアチェック
 		   break;
 
 	default:
 		break; 
-
-
-
 	}
+	//制限時間の更新
+	GameTime--;
+
+	//制限時間が無くなったら、ゲームオーバーに遷移する
+	if (GameTime < 0)
+	{
+		Change_Scene(E_GAME_OVER);
+	}
+
+	//ミッションクリアを達成したら、ゲームクリアに遷移する。
+	if (Get_StageClearFlag())
+	{
+		Change_Scene(E_GAME_CLEAR);
+	}
+
+
+}
+
+
+/*************************
+* ゲームメイン画面：描画処理
+* 引数：なし
+* 戻り値：なし
+**************************/
+void GameMainScene_Draw(void)
+{
+	int PosX = 600;
+	int tmp_level = GameLevel;
+	int tmp_score = Get_StageScore();
+
+	//ステージ描画
+	StageDraw();
+
+	//フェードアウト状態か？
+	if (Get_StageState() == 1)
+	{
+		FadeOutBlock();  //フェードアウトする。
+	}
+
+	//レベルを描画
+	do {
+		DrawRotaGraph(PosX, 80, 0.5f, 0, NumberImage[tmp_level % 10], TRUE);
+		tmp_level /= 10;
+		PosX -= 30;
+	} while (tmp_level > 0);
+
+	//スコアの描画
+	Posx = 620;
+	do {
+		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], TRUE);
+		tmp_Score /= 10;
+		PosX -= 20;
+	} while (tmp_score > 0);
+
+	//制限時間の描画
+	DrawBox(491, 469, 509, 469 - GameTime / 60 * 2, 0x0033ff, TRUE);
 }
