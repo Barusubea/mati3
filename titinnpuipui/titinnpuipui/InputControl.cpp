@@ -35,7 +35,7 @@ void Input_Initialize(void)
 * 引数：なし
 * 戻り値：なし
 **************************************/
-void Input_Updata(void)
+void Input_Update(void)
 {
 	//マウス入力情報の取得
 	old_button = now_button;
@@ -120,6 +120,16 @@ int GetKeyFlg(int key)
 * 入力制限機能マウス座標取得処理
 * 引数：なし
 * 戻り値：マウスカーソルのX座標情報
+*************************************************/
+int GetMousePositionX(void)
+{
+	return mouse_position_x;
+}
+
+/************************************************
+* 入力制限機能マウス座標取得処理
+* 引数：なし
+* 戻り値：マウスカーソルのY座標情報
 *************************************************/
 int GetMousePositionY(void)
 {

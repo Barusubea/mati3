@@ -88,7 +88,7 @@ int GameMainScene_Initialize(void)
 * 引数:なし
 * 戻り値:なし
 ****************************/
-void GameMainScene_Updata(void)
+void GameMainScene_Update(void)
 {
 	switch (Get_StageState())
 	{
@@ -158,10 +158,10 @@ void GameMainScene_Draw(void)
 	} while (tmp_level > 0);
 
 	//スコアの描画
-	Posx = 620;
+	PosX = 620;
 	do {
 		DrawRotaGraph(PosX, 160, 0.3f, 0, NumberImage[tmp_score % 10], TRUE);
-		tmp_Score /= 10;
+		tmp_score /= 10;
 		PosX -= 20;
 	} while (tmp_score > 0);
 

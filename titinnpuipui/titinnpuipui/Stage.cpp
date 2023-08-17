@@ -36,7 +36,7 @@ typedef struct
 
 enum
 {
-	E_NOME,
+	E_NONE,
 	E_ONCE,
 	E_SECOND
 };
@@ -46,7 +46,7 @@ enum
 *******************************************/
 T_Object Block[HEIGHT][WIDTH];				//ブロックオブジェクトデータ
 T_CURSOR Select[3];							//セレクトカーソル座標
-int item[ITEM_MAX];
+int Item[ITEM_MAX];
 int ClickStatus;
 int Stage_State;
 int Stage_Mission;
@@ -63,7 +63,7 @@ int MoveBlockSE;							//ブロック移動SE
 * プロトタイプ宣言
 ********************************************/
 int combo_check(int x, int y);
-void combo_check_h(int y, int x, int* cnt, int col);
+void combo_check_h(int y, int x, int* cnt, int* col);
 void combo_check_w(int y, int x, int* cnt, int* col);
 void save_block(void);
 void restore_block(void);
@@ -154,7 +154,7 @@ void StageDraw(void) {
 	{
 		for (int j = 0; j < WIDTH; j++)
 		{
-			if (Block[i][j].x, Block[i][j].y, BlockImage[Block[i][j].image], TRUE);
+			if (Block[i][j].flg == TRUE && Block[i][j].image != NULL)
 			{
 				DrawGraph(Block[i][j].x, Block[i][j].y, BlockImage[Block[i][j].image], TRUE);
 			}
@@ -176,7 +176,7 @@ void StageDraw(void) {
 	for (int i = 0; i < ITEM_MAX; i++)
 	{
 		DrawRotaGraph(540, 245 + i * 30, 0.5f, 0, BlockImage[i + 1], TRUE, 0);
-		DrawFormatString(580, 235 + i * GetColor(255, 255, 255), "%3d", Item[i]);
+		DrawFormatString(580, 235 + i * 30, GetColor(255, 255, 255), "%3d", Item[i]);
 	}
 }
 
@@ -650,7 +650,7 @@ void restore_block(void)
 
 	for (i = 0; i < HEIGHT; i++)
 	{
-		for (i = 0; j < WIDTH; j++)
+		for (j = 0; j < WIDTH; j++)
 		{
 			Block[i][j].image = Block[i][j].backup;
 		}

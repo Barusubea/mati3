@@ -1,5 +1,5 @@
 #include"GameOverScene.h"
-#include"DxLib"
+#include"DxLib.h"
 #include"SceneManager.h"
 
 /**************************
@@ -7,7 +7,7 @@
 ***************************/
 int GameOverImage;
 int GameOverSE;
-int GameOverflag;
+int GameOverFlag;
 
 /**************************
 * プロトタイプ宣言

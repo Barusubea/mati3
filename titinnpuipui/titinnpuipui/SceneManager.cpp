@@ -34,13 +34,13 @@ GAME_MODE Next_Mode;	//げームモード情報(次)
 * 引数：ゲームモード情報
 * 戻り値：なし
 ************************************/
-int SceneManager_Initialize(GAME_MODE_mode)
+int SceneManager_Initialize(GAME_MODE mode)
 {
-	int Read_Error
+	int Read_Error;
 
-	//シーン読み込み
+	//シーン読み込み処理
 	//タイトル画面
-	Read_Error = TitleScene_initialize();
+		Read_Error = TitleScene_Initialize();
 	if (Read_Error == D_ERROR)
 	{
 		return D_ERROR;
@@ -149,5 +149,5 @@ void SceneManager_Draw(void)
 ******************************************************/
 void Change_Scene(GAME_MODE mode)
 {
-	NEXT_Mode = mode;
+	Next_Mode = mode;
 }

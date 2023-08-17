@@ -9,7 +9,7 @@
 
 #define SCREEN_HEIGHT  (480)  //スクリーンサイズ
 #define SCREEN_WIDTH   (640)  //スクリーンサイズ(幅)
-#define SCREEN_COLOBIT  (32)  //スクリーンカラービット
+#define SCREEN_COLORBIT  (32)  //スクリーンカラービット
 #define FONT_SIZE       (20)  //文字サイズ
 
 /**********************************
