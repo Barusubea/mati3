@@ -253,7 +253,7 @@ void SelectBlock(void)
 
 	//カーソル座標の取得
 	Select[SELECT_CURSOR].x = GetMousePositionX() / BLOCKSIZE;
-	Select[SELECT_CURSOR].y = GetMousePositionX() / BLOCKSIZE;
+	Select[SELECT_CURSOR].y = GetMousePositionY() / BLOCKSIZE;
 
 	//選択ブロックの範囲を制御
 	if (Select[SELECT_CURSOR].x < 0)
@@ -264,7 +264,7 @@ void SelectBlock(void)
 	{
 		Select[SELECT_CURSOR].x = WIDTH - 3;
 	}
-	if (Select[SELECT_CURSOR].y > 0)
+	if (Select[SELECT_CURSOR].y < 0)
 	{
 		Select[SELECT_CURSOR].y = 0;
 	}
